@@ -1,0 +1,28 @@
+version : "3.9"
+
+services:
+    redis:
+        image: redis:8
+        container_name: redis_basic
+        ports:
+            - "6379:6379"
+        restart: unless-stopped
+        volumes:
+            - redis_data:/data
+
+    mongodb:
+        image: mongo:8
+        container_name: mongo_basic
+        ports:
+            - "27017:27017"
+        restart: unless-stopped
+        volumes:
+            - mongodb_data:/data/db
+        environment:
+            - MONGO_INITDB_DATABASE: chaiRedis
+        
+volumes:
+
+    mongodb_data:
+    redis_data:
+        

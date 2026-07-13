@@ -5,6 +5,7 @@ import mongoose from "mongoose"
 import {Redis}  from "ioredis"
 
 const app = express()
+const PORT = process.env.PORT ||  4003
 
 const redis = new Redis(process.env.REDIS_URL || "redis://localhost:6379")
 
@@ -24,4 +25,4 @@ app.get("/mongo", async(req,res)=>{
 
 })
 
-app.listen(process.env.PORT, () => console.log("Server Running..."))
+app.listen(PORT, () => console.log("Server Running..."))

@@ -19,7 +19,7 @@ services:
         volumes:
             - mongodb_data:/data/db
         environment:
-            - MONGO_INITDB_DATABASE: chaiRedis
+            MONGO_INITDB_DATABASE: chaiRedis
         
 volumes:
 

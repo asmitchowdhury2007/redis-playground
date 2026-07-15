@@ -22,23 +22,30 @@ app.post("/otp", async(req,res)=>{
     const phoneRegex = /^[6-9]\d{9}$/
     if (! phoneRegex.test(phoneNumber)) return res.json({message : "Phone Number is not valid"});
     const otp = generateOTP()
-    await redis.set(setKey(phoneNumber), otp, "EX", 30)
+    await redis.set(setKey(phoneNumber), otp, "EX", 60)
+    await redis.del(`attempts:${phoneNumber}`)
     return res.json({success : true , otp })  
     
 })
 
 app.post("/otp/verify", async(req,res)=>{
+
     const {phoneNumber,otp} = req.body
     const storedOTP = await redis.get(setKey(phoneNumber))
-    if(!storedOTP) return res.json({success : false , message : "OTP expired or phone number not found"}).redirect("/otp");
+    
+    if(!storedOTP) return res.json({success : false , message : "OTP expired or phone number not found"})
     if(storedOTP !== otp){
+        
         const attempts = await redis.incr(`attempts:${phoneNumber}`)
+        if (attempts === 1) {
+            await redis.expire(`attempts:${phoneNumber}`, 60);
+        }
         if(attempts === 1 || attempts === 2){
             return res.json({success : false , message :`Invalid OTP .... You have ${3-attempts} attempts left`})
         }
         if(attempts >= 3){
             await redis.del(setKey(phoneNumber))
-            return res.json({success : false , message : "Max Attempts Done ... Create a new OTP"}).redirect("/otp");
+            return res.json({success : false , message : "Max Attempts Done ... Create a new OTP"})
 
         }
     }

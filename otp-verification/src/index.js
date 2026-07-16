@@ -57,6 +57,8 @@ app.post("/otp/verify", async(req,res)=>{
 app.get("/:phoneNumber/ttl", async(req,res) =>{
     const {phoneNumber} = req.params
     const ttl = await redis.ttl(setKey(phoneNumber));
+    if(ttl === -2) return res.json({message : "OTP doesnot exist or expired"})
+    if(ttl === -1) return res.json({message : "OTP has no expiration time"})
     return res.json({ttl});
 })
 

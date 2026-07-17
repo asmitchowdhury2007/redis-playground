@@ -24,7 +24,7 @@ app.post("/user/json/:id", async(req,res)=>{
 })
 
 app.get("/user/json/:id", async(req,res)=>{
-    const data = await redis.hgetall(setKey(req.params.id))
+    const data = await redis.get(setKey(req.params.id))
     if (!data) return res.json({message : "User Data doesnot exist"})
     return res.json({message : JSON.parse(data)})
     
@@ -35,12 +35,12 @@ app.get("/user/json/:id", async(req,res)=>{
 app.post("/user/hash/:id", async(req,res)=>{
     const data = req.body
     if(!data) return res.json({message : "No data provided"})
-    await redis.hset(setKey(id), data)
+    await redis.hset(setKey(req.params.id), data)
     return res.json({message : "User Data stored as Hash"})
 })
 
 app.get("/user/hash/:id", async(req,res)=>{
-    const data = await redis.hgetall(setKey(id));
+    const data = await redis.hgetall(setKey(req.params.id));
     if(!data) return res.json({message : "User Data doesnot exist"})
     return res.json({message : data})
 

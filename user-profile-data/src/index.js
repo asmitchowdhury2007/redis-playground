@@ -33,7 +33,7 @@ app.get("/user/json/:id", async(req,res)=>{
 //user profile data in hash form
 
 app.post("/user/hash/:id", async(req,res)=>{
-    const data = req.body
+    const data = req.body  
     if(!data) return res.json({message : "No data provided"})
     await redis.hset(setKey(req.params.id), data)
     return res.json({message : "User Data stored as Hash"})

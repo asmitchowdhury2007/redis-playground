@@ -31,11 +31,13 @@ A simple backend application built with **Node.js**, **Express.js**, and **Redis
 
 ```text
 otp-verification/
-│
-├── index.js
+├── src/
+│   ├── index.js
+│   └── ...
+├
+├── .gitignore
 ├── package.json
 ├── package-lock.json
-├── .gitignore
 └── README.md
 ```
 

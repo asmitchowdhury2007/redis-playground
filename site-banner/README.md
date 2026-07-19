@@ -31,10 +31,16 @@ The API allows you to create, retrieve, validate, and delete a banner while stor
 
 ```text
 site-banner/
-├── index.js
+├── src/
+│   ├── index.js
+│   └── ...
+├
+├── .gitignore
 ├── package.json
-├── .env
+├── package-lock.json
 └── README.md
+```
+
 ```
 
 ---
@@ -44,8 +50,8 @@ site-banner/
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/<your-github-username>/<repository-name>.git
-cd <repository-name>
+git clone https://github.com/asmitchowdhury2007/redis-playground.git
+cd site-banner
 ```
 
 ### 2. Install dependencies

@@ -34,11 +34,13 @@ This project is useful for understanding when to use Redis Strings vs Redis Hash
 
 ```text
 user-profile-data/
-│
-├── index.js
+├── src/
+│   ├── index.js
+│   └── ...
+├
+├── .gitignore
 ├── package.json
 ├── package-lock.json
-├── .gitignore
 └── README.md
 ```
 

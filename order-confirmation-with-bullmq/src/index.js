@@ -1,7 +1,7 @@
 import dotenv from "dotenv"
 dotenv.config()
 import express from "express"
-import {OrderQueue} from "./queue.js"
+import {connection,OrderQueue} from "./queue.js"
 
 const app = express()
 app.use(express.json())

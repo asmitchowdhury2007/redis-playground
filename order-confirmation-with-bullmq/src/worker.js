@@ -1,5 +1,5 @@
 import {Worker} from "bullmq"
-import {connection,OrderQueue } from "./queue.js"
+import {connection,OrderQueue} from "./queue.js"
 
 const worker = new Worker(
     "orderQueue",

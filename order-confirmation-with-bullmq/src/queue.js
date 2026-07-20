@@ -7,7 +7,7 @@ const connection ={
 }
 const OrderQueue = new Queue("OrderQueue", {connection})
 
-module.exports ={
+export {
     connection,
     OrderQueue
 }

@@ -25,5 +25,5 @@ worker.on("completed", (job)=>{
 })
 
 worker.on("failed", (job,err)=>{
-    console.log(err.message)
+    console.log(err)
 })

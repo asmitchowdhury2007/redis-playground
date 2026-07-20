@@ -21,8 +21,8 @@ app.post("/orders", async(req,res)=>{
             type: "exponential",
             delay: 2000,
         },
-    }
 
+    }
     )
     return res.json({
         success : true,
